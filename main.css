@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+.top {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+h1 {
+    border-bottom: 1px solid #CCC;
+    text-align: center;
+    font-size: 180%;
+}
+p {
+    color: #333;
+}
+body h2 {
+    text-align: center;
+}
+h2 {
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+.today {
+    text-decoration: underline;
+    font-size: 160%;
+    margin-left: 20px;
+    color: black;
+    text-align: left;
+}
+.alert {
+    color: red;
+    text-decoration: underline;
+    font: 600;
+}
+.loc {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    max-width: 960px;
+    margin: 5em auto;
+}
+p {
+    max-width: 95%;
+    margin: 25px auto;
+    font-family: Cambria, Georgia, serif;
+    font-size: 100%;
+    text-transform: lowercase;
+}
+p::first-letter {
+    text-transform: uppercase;
+}
+#toSettings {
+    font: bold 1.1em Arial;
+    text-decoration: none;
+    background-color: #0088CC;
+    color: #EEE;
+    padding: 4px 12px;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    float: right;
+}
+.hidden {
+    display: none;
+}
+.center {
+    text-align: center;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+li input[type='text'] {
+    width: 50%;
+    padding: 2px 5px;
+    box-sizing: border-box;
+}
+label {
+    display: inline-block;
+    width: 50%;
+    margin-top: 16px;
+}
