@@ -58,6 +58,11 @@
             margin: 25px auto;
             font-family: Cambria, Georgia, serif;
             font-size: 100%;
+            text-transform: lowercase;
+        }
+
+        p::first-letter { 
+            text-transform: uppercase;
         }
         
         #toSettings {
@@ -193,17 +198,17 @@ $( document ).ready( function () {
     ract = new Ractive( {
         el: "#settings",
         template: "#template",
-        data: {
-            location: titles.slice( 0 ),
-            poss: possibles.slice( 0 ),
-            selectd: []
+        data: function(){
+
+            return {
+                location: titles.slice( 0 ),
+                poss: possibles.slice( 0 ),
+                selectd: possibles.map(function( cur,i ) {
+                    return ( selected.indexOf( i ) > -1 );
+                })
+            };
         },
         oninit: function () {
-            var arr = [];
-            for ( var i = 0; i < possibles.length; i++ ) {
-                arr.push( selected.indexOf( i ) > -1 ? true : false );
-            }
-            this.set( "selectd", arr );
             this.observe( "location", function ( newVal, oldVal, obj ) {
                 if ( !localStorage ) {
                     return;
@@ -214,14 +219,13 @@ $( document ).ready( function () {
                 if ( !localStorage || !oldVal ) {
                     return;
                 }
-                var arr = [];
-                for ( var i = 0; i < possibles.length; i++ ) {
-                    if ( newVal[ i ] ) {
-                        arr.push( i );
-                    }
-                }
+                var arr = possibles.map(function( cur,i) {
+                    return newVal[ i ] ? i : undefined;
+                }).filter(function(cur){
+                    return cur!==undefined;
+                });
                 localStorage.setItem( 'selected', JSON.stringify( arr ) );
-                selected = arr;
+                selected=arr;
             } );
         }
     } );
