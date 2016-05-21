@@ -88,7 +88,7 @@ $( document ).ready( function () {
                 }
                 localStorage.setItem( 'titles', JSON.stringify( newVal ) );
             } );
-            this.observe( "selectd", function ( newVal ) {
+            this.observe( "selectd", function ( newVal, oldVal ) {
                 if ( !localStorage || !oldVal ) {
                     return;
                 }
