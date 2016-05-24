@@ -101,10 +101,13 @@ li input[type='text'] {
     width: 50%;
     padding: 2px 5px;
     box-sizing: border-box;
+    float: left;
+    margin: 20px 0;
 }
 
 label {
     display: inline-block;
     width: 50%;
     margin-top: 16px;
+    float: left;
 }

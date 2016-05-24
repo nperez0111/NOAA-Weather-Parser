@@ -74,6 +74,7 @@ $( document ).ready( function () {
         data: function () {
 
             return {
+                darkMode: false,
                 location: titles.slice( 0 ),
                 poss: possibles.slice( 0 ),
                 selectd: possibles.map( function ( cur, i ) {
@@ -87,6 +88,15 @@ $( document ).ready( function () {
                     return;
                 }
                 localStorage.setItem( 'titles', JSON.stringify( newVal ) );
+            } );
+            this.observe( "darkMode", function ( newVal, oldVal ) {
+                if ( !( oldVal == undefined ) ) {
+                    if ( newVal ) {
+                        $( 'body' ).addClass( "dark" );
+                    } else {
+                        $( 'body' ).removeClass( 'dark' );
+                    }
+                }
             } );
             this.observe( "selectd", function ( newVal, oldVal ) {
                 if ( !localStorage || !oldVal ) {
