@@ -37,6 +37,7 @@ var locs,
     ],
     selected,
     ract;
+Ractive.DEBUG = false;
 
 function applyHTML( resp, i ) {
     var always = "<div class='loc'><div><h1>" + titles[ i ] + "</h1></div>";

@@ -43,13 +43,13 @@ for($i=0,$l=(count(($html->find('b')))/2);($i<$l);$i++){
 				}
 			}
 			else{
-			echo "<p>".$temp[$c]."</p>";
+			echo capitalizeSentences("<p>".$temp[$c]."</p>");
 		}
 		}
 		array_push($arr, $temp);
 	}
 	else{
-		echo "<div>".$str."</div>";
+		echo capitalizeSentences("<div>".$str."</div>");
 		array_push($arr,$str);
 	}
 	if(count($html->find('b'))==2){
@@ -73,5 +73,13 @@ function strposer($var,$arr){
 		}
 	}
 	return false;
+}
+function capitalizeSentences($str){
+//first we make everything lowercase, and 
+//then make the first letter if the entire string capitalized
+//ucfirst(strtolower($str));
+//now capitalize every letter after a . ? and ! followed by space
+return  preg_replace_callback('/[.!?] .*?\w/', 
+  create_function('$matches', 'return strtoupper($matches[0]);'), ucfirst(strtolower($str)));
 }
 ?>

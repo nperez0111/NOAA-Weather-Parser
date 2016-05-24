@@ -60,7 +60,6 @@ p {
     margin: 25px auto;
     font-family: Georgia, Times, "Times New Roman", serif;
     font-size: 100%;
-    text-transform: lowercase;
 }
 
 p::first-letter {
