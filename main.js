@@ -90,6 +90,7 @@ $( document ).ready( function () {
                 }
                 localStorage.setItem( 'titles', JSON.stringify( newVal ) );
             } );
+
             this.observe( "darkMode", function ( newVal, oldVal ) {
                 if ( !( oldVal == undefined ) ) {
                     if ( newVal ) {
@@ -97,8 +98,13 @@ $( document ).ready( function () {
                     } else {
                         $( 'body' ).removeClass( 'dark' );
                     }
+                    if ( !localStorage ) {
+                        return;
+                    }
+                    localStorage.setItem( 'darkMode', JSON.stringify( newVal ) );
                 }
             } );
+
             this.observe( "selectd", function ( newVal, oldVal ) {
                 if ( !localStorage || !oldVal ) {
                     return;
@@ -108,11 +114,25 @@ $( document ).ready( function () {
                 } ).filter( function ( cur ) {
                     return cur !== undefined;
                 } );
-                localStorage.setItem( 'selected', JSON.stringify( arr ) );
                 selected = arr;
+                if ( !localStorage ) {
+                    return;
+                }
+                localStorage.setItem( 'selected', JSON.stringify( arr ) );
             } );
+
+            if ( localStorage ) {
+                var darkSetting = JSON.parse( localStorage.getItem( 'darkMode' ) );
+                if ( darkSetting && darkSetting !== null ) {
+                    this.set( "darkMode", false );
+                    this.set( "darkMode", darkSetting );
+                }
+
+            }
+
         }
     } );
+
     $( "#toSettings" ).click( function ( e ) {
         e.preventDefault();
         if ( $( "#settings" ).hasClass( "hidden" ) ) {
@@ -126,4 +146,5 @@ $( document ).ready( function () {
             $( "#settings" ).addClass( "hidden" );
         }
     } );
+
 } );
