@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    transition: all 500ms ease-out;
 }
 
 .top {
@@ -45,14 +46,13 @@ h2 {
 .today {
     text-decoration: underline;
     font-size: 160%;
-    margin-left: 20px;
-    text-align: left;
 }
 
 .loc {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     max-width: 960px;
-    margin: 5em auto;
+    margin: 3em auto;
+    padding: 2em 3em;
 }
 
 p {
