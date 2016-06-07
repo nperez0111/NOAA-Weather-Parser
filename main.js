@@ -40,12 +40,16 @@ var locs,
 Ractive.DEBUG = false;
 
 function applyHTML( resp, i ) {
-    return ( "<div class='loc'><div><h1>" + titles[ i ] + "</h1></div>" + resp + "</div>" );
+    return resp ? ( "<div class='loc'><div><h1>" + titles[ i ] + "</h1></div>" + resp + "</div>" ) : '';
 }
 
 function loadData() {
     Promise.all( selected.map( function ( cur, i ) {
-        return $.get( "getDay.php?loc=" + possibles[ cur ][ 1 ] );
+        return new Promise( function ( resolve, err ) {
+            $.get( "getDay.php?loc=" + possibles[ cur ][ 1 ] ).error( function () {
+                resolve( undefined );
+            } ).then( resolve )
+        } );
     } ) ).then( function ( resp ) {
         var allDays = resp.map( applyHTML ).reduce( function ( a, b ) {
             return a + b;
