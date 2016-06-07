@@ -40,16 +40,18 @@ var locs,
 Ractive.DEBUG = false;
 
 function applyHTML( resp, i ) {
-    var always = "<div class='loc'><div><h1>" + titles[ i ] + "</h1></div>";
-    $( '#hook' ).append( always + resp + "</div>" );
+    return ( "<div class='loc'><div><h1>" + titles[ i ] + "</h1></div>" + resp + "</div>" );
 }
 
 function loadData() {
-    selected.forEach( function ( cur, i ) {
-        $.get( "getDay.php?loc=" + possibles[ cur ][ 1 ] ).then( function ( resp ) {
-            applyHTML( resp, cur );
-        } );
-    } );
+    Promise.all( selected.map( function ( cur, i ) {
+        return $.get( "getDay.php?loc=" + possibles[ cur ][ 1 ] );
+    } ) ).then( function ( resp ) {
+        var allDays = resp.map( applyHTML ).reduce( function ( a, b ) {
+            return a + b;
+        }, "" );
+        $( '#hook' ).append( allDays );
+    } );;
 }
 
 function applyLocalStorage() {
