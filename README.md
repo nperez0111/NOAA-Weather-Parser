@@ -1,6 +1,8 @@
 NOAA-Weather-Parser
 ================================
 
+![Image of the interface of NOAA Weather Parser](http://nickthesick.com/images/NOAABig.png)
+
 What it does
 ------------
 
